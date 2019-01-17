@@ -1,6 +1,7 @@
 package ng.nexttrip.nexttrip2.signup
 
 import android.content.Context
+import android.view.View
 
 interface RegInterface {
     // TODO: Extend this in Activity/Fragment
@@ -18,6 +19,8 @@ interface RegInterface {
         fun showProgress(show: Boolean)
 
         fun getContext(): Context
+
+        fun proceedToHome()
     }
 
     interface Presenter{

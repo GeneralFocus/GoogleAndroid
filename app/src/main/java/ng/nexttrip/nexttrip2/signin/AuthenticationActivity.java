@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
@@ -34,7 +35,9 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
         phoneNumber = getIntent().getStringExtra("phone_number");
 
     }
-    public void proceedToHome(View view){
+
+    @Override
+    public void proceedToHome(){
         Intent intent = new Intent(AuthenticationActivity.this, HomeActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.slide_in);

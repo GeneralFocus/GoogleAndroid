@@ -57,4 +57,9 @@ public class PrefManager {
     public String getRefreshToken() {
             return pref.getString(REFRESH_TOKEN, null);
     }
+
+    //Save User ID
+    public void saveUserID(String id){ editor.putString("USER_ID", id).commit(); }
+
+    public String getUserID() { return pref.getString("USER_ID", ""); }
 }

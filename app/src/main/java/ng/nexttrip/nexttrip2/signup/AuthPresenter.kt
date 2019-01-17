@@ -47,20 +47,19 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
 
             val status = it.getBoolean("status")
             if (status){
-                // TODO: User has been registered successfully. Pass the value to the View. Use Interface to Link Together
-                //TODO: AuthPresenter successfull. Open Login Activity for user to enter Phone Number
+                view.showMessage("Registration Successful")
+                view.openLogin()
             }
             else{
                 val message = it.getString("message")
-                //TODO: Display message in View. Was not able to register User
+                view.showError(message)
             }
 
         }, Response.ErrorListener {
             val errorMessage = it.message
-
-            //TODO: Display an error message to user. An unexpected Error occurred. View Log for workaround
-
             Log.e("Error", it.toString())
+
+            view.showError(errorMessage!!)
         })
 
         Volley.newRequestQueue(view.getContext()).add(userRequest)
@@ -84,8 +83,8 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
                 //TODO: Open Home Activity
 
                 prefManager = PrefManager(view.getContext())
-                prefManager.saveAccessToken(it.getJSONObject("data").getString("token"))
-                prefManager.saveRefreshToken(it.getJSONObject("data").getString("refresh_token"))
+                prefManager.saveUserID(it.getJSONObject("data").getString("user_id"))
+                view.proceedToHome()
             }
             else{
                 //TODO: Invalid Token. Resend Request
