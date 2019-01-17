@@ -37,3 +37,6 @@ dependencies {
     implementation 'com.justkiddingbaby:vercodeedittext:1.0.5'
 
 }
+android {
+    useLibrary 'org.apache.http.legacy'
+}

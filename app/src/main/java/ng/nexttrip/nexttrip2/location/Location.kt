@@ -26,8 +26,8 @@ class Location(var view: LocationInterface.View) {
 
         val param = HashMap<String, String>()
         param["driver_id"] = driver_id
-        param["lat"] = lat
-        param["lng"] = lng
+        //param["lat"] = lat
+        //param["lng"] = lng
 
         val jsonParam = JSONObject(param)
 
