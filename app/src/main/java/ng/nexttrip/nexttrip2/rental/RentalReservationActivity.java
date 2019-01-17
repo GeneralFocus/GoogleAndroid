@@ -10,6 +10,7 @@ import ng.nexttrip.nexttrip2.R;
  */
 
 public class RentalReservationActivity extends Activity {
+    //Todo: rental reservation tab
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rentalreservation_activity);

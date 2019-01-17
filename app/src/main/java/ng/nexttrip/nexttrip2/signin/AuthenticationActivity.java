@@ -25,6 +25,7 @@ import ng.nexttrip.nexttrip2.signup.RegistrationActivity;
  */
 
 public class AuthenticationActivity extends AppCompatActivity {
+    //Todo this where user input the OTP sent to his/her phone number....
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

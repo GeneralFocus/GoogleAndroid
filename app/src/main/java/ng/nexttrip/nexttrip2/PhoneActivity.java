@@ -33,8 +33,7 @@ import ng.nexttrip.nexttrip2.util.Util;
 
 
 public class PhoneActivity extends AppCompatActivity {
-    //ec2-52-15-130-95.us-east-2.compute.amazonaws.com
-    //Create string variable to hold the EditText Value.
+    //Todo test code after registration, code already return -ve response.
     String phone_NumberHolder;
 
     //EditText Field
@@ -42,9 +41,6 @@ public class PhoneActivity extends AppCompatActivity {
 
     // Creating Progress dialog.
     ProgressDialog progressDialog;
-
-    // Storing server url into String variable.
-   // String HttpUrl = "http://ec2-52-15-130-95.us-east-2.compute.amazonaws.com/api/v1/user/auth";
 
     Boolean CheckEditText;
     JSONParser jparser=new JSONParser();
@@ -71,22 +67,21 @@ public class PhoneActivity extends AppCompatActivity {
             Toast.makeText(PhoneActivity.this, "Input your phone number", Toast.LENGTH_LONG).show();
         }
     }
+
     public void CheckEditTextIsEmptyOrNot() {
         // Getting values from EditText.
         phone_NumberHolder = phone.getText().toString().trim();
 
         // Checking whether EditText value is empty or not.
         if (TextUtils.isEmpty(phone_NumberHolder)) {
-            // If EditText is empty then set variable value as False.
             CheckEditText = false;
         } else {
-            // If EditText is filled then set variable value as True.
             CheckEditText = true;
         }
     }
 
 
-
+//Todo Login Class ==> Prasing json
     class Login extends AsyncTask<String, String, String> {
         ProgressDialog pDialog;
         String s="";
@@ -108,15 +103,7 @@ public class PhoneActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... st) {
-
-
-          /*  if(st!=null && st[0].equals("driver")){
-                email=drloginEmail.getText().toString();
-                password=drloginPassword.getText().toString();
-                driver=true;
-            }else{*/
             phone_number = phone .getText().toString().trim();
-         //   }
 
             List<NameValuePair> params=new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("phone_number",phone_number));
@@ -165,6 +152,7 @@ public class PhoneActivity extends AppCompatActivity {
                 if(Util.isConnectingToInternet(con)){
                     Toast.makeText(con, "No Response Register", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(PhoneActivity.this, RegistrationActivity.class);
+                    //TODO passing phone number collected to the registration activity, when validation returns a -ve comment
                     intent.putExtra("phone_number", phone_number);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
@@ -174,24 +162,13 @@ public class PhoneActivity extends AppCompatActivity {
             }
 
             if(success==0){
-                //Toast.makeText(con, s, Toast.LENGTH_LONG).show();
+                Toast.makeText(con, "Unknown Error Occur...", Toast.LENGTH_SHORT).show();
             }else if(success==1){
-				/*GetUserData data=new GetUserData();
-				data.execute();*/
 
                 SharedPreferences.Editor edit= sh.edit();
                 edit.putString("phone_number", phone_number);
                 edit.putBoolean("type", driver);
                 edit.commit();
-
-
-               /* Intent i=new Intent(con, DriverPositionActivity.class);
-                if(driver)
-                    i=new Intent(con, DriverActivity.class);
-
-                startActivity(i);
-                //Toast.makeText(con, s, Toast.LENGTH_SHORT).show();
-                finish();*/
             }
         }
     }
