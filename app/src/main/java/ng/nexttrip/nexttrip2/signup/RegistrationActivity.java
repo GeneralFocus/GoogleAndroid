@@ -120,4 +120,9 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
     public Context getContext() {
         return this;
     }
+
+    @Override
+    public void openLogin() {
+        startActivity(new Intent(this, AuthenticationActivity.class));
+    }
 }

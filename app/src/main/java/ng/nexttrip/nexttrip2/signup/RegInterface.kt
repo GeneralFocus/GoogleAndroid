@@ -13,6 +13,8 @@ interface RegInterface {
 
         fun openOTP()
 
+        fun openLogin()
+
         fun showProgress(show: Boolean)
 
         fun getContext(): Context
