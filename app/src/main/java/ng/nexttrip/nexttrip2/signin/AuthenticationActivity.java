@@ -82,4 +82,7 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
         return this;
     }
 
+    @Override
+    public void openLogin() {
+    }
 }

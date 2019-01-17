@@ -14,8 +14,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,8 +52,6 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
         reg_lastname = findViewById(R.id.reg_lastname);
         reg_email = findViewById(R.id.reg_email);
        //TODO get the phone number passed from the PhoneActivity To Avoid Input Replication
-        Intent intent = getIntent();
-        phone = intent.getStringExtra("phone_number");
     }
 
     //TODO After registration take user to the login page
@@ -63,13 +59,15 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
         CheckEditTextIsEmptyOrNot();
         if (CheckEditText) {
 
-
             String fullName = firstname_Holder + " " + lastname_Holder;
 
             ng.com.maktay.nexttrip.signup.Registration register = new ng.com.maktay.nexttrip.signup.Registration(this);
 
             register.register(fullName, email_Holder, phone, "CASH");
             //TODO: I don't see where you collect phone number from user.
+//            Registration reg = new Registration();
+//            reg.execute();
+          //  new Registration.execute();
         } else {
             Toast.makeText(RegistrationActivity.this, "All Fields Are Required", Toast.LENGTH_LONG).show();
         }
@@ -85,8 +83,10 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
 
         // Checking whether EditText value is empty or not.
         if (TextUtils.isEmpty(firstname_Holder) || TextUtils.isEmpty(lastname_Holder) || TextUtils.isEmpty(email_Holder)) {
+            // If EditText is empty then set variable value as False.
             CheckEditText = false;
         } else {
+            // If EditText is filled then set variable value as True.
             CheckEditText = true;
         }
     }
@@ -119,5 +119,10 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void openLogin() {
+        startActivity(new Intent(this, AuthenticationActivity.class));
     }
 }
