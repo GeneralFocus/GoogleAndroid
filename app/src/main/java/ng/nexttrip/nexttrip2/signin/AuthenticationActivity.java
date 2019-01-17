@@ -1,26 +1,16 @@
 package ng.nexttrip.nexttrip2.signin;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.TimeUnit;
-
-import ng.com.maktay.nexttrip.signup.Registration;
+import ng.com.maktay.nexttrip.signup.AuthPresenter;
 import ng.nexttrip.nexttrip2.PhoneActivity;
 import ng.nexttrip.nexttrip2.R;
 import ng.nexttrip.nexttrip2.home.HomeActivity;
@@ -33,12 +23,15 @@ import ng.nexttrip.nexttrip2.signup.RegistrationActivity;
 
 public class AuthenticationActivity extends AppCompatActivity implements RegInterface.View {
     ProgressDialog progressDialog;
+    String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
+
+        phoneNumber = getIntent().getStringExtra("phone_number");
 
     }
     public void proceedToHome(View view){
@@ -47,10 +40,10 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
         overridePendingTransition(R.anim.slide_in, R.anim.slide_in);
     }
 
-    void login(String phoneNumber){
-        //TODO: Call this method to Login
-        Registration presenter = new Registration(this);
-        presenter.login(phoneNumber);
+    void validateOTP(String phoneNumber, String otp){
+        //TODO: Call this on Button Click when you want to validate OTP
+        AuthPresenter presenter = new AuthPresenter(this);
+        presenter.sendOTPRequest(phoneNumber, otp);
     }
 
     @Override
@@ -65,17 +58,16 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
 
     @Override
     public void openRegister() {
-        startActivity(new Intent(AuthenticationActivity.this, RegistrationActivity.class));
+        startActivity(new Intent(this, RegistrationActivity.class));
     }
 
     @Override
     public void openOTP() {
-        //TODO: Open OTP Activity
+        //Not Required
     }
 
     @Override
     public void showProgress(boolean show) {
-        //TODO: Show Progress
         progressDialog.setMessage("Validating Phone Number....");
         progressDialog.show();
     }
@@ -88,5 +80,6 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
 
     @Override
     public void openLogin() {
+        startActivity(new Intent(this, PhoneActivity.class));
     }
 }

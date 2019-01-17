@@ -57,7 +57,7 @@ class DriverPresenter(var view: DriverInterface.View): DriverInterface.Presenter
         val driverReg = JsonObjectRequest(Request.Method.POST, driverUrl, jsonParam, Response.Listener {
             val status = it.getBoolean("status")
             if (status){
-                //TODO: Registration Successful
+                //TODO: AuthPresenter Successful
             }
             else{
                 // TODO: Could not register. Show error Message

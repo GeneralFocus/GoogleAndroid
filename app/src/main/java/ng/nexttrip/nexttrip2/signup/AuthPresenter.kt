@@ -12,7 +12,7 @@ import org.json.JSONObject
 
 //TODO: Use Interface in order to make Presenter Class and Activity Work together
 
-class Registration(var view: RegInterface.View): RegInterface.Presenter {
+class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
 
     val userUrl = "${GlobalVariable.API}/api/v1/user/auth"
     lateinit var prefManager : PrefManager
@@ -48,7 +48,7 @@ class Registration(var view: RegInterface.View): RegInterface.Presenter {
             val status = it.getBoolean("status")
             if (status){
                 // TODO: User has been registered successfully. Pass the value to the View. Use Interface to Link Together
-                //TODO: Registration successfull. Open Login Activity for user to enter Phone Number
+                //TODO: AuthPresenter successfull. Open Login Activity for user to enter Phone Number
             }
             else{
                 val message = it.getString("message")

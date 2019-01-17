@@ -1,34 +1,22 @@
 package ng.nexttrip.nexttrip2.signup;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ng.com.maktay.nexttrip.signup.Registration;
 import ng.nexttrip.nexttrip2.PhoneActivity;
 import ng.nexttrip.nexttrip2.R;
 import ng.nexttrip.nexttrip2.signin.AuthenticationActivity;
 import ng.nexttrip.nexttrip2.util.GlobalVariable;
 import ng.nexttrip.nexttrip2.util.JSONParser;
-import ng.nexttrip.nexttrip2.util.UserInfo;
-import ng.nexttrip.nexttrip2.util.Util;
 
 /**
  * Created by Olabode Qudus on 11/10/2018.
@@ -63,13 +51,13 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
 
             String fullName = firstname_Holder + " " + lastname_Holder;
 
-            ng.com.maktay.nexttrip.signup.Registration register = new ng.com.maktay.nexttrip.signup.Registration(this);
+            ng.com.maktay.nexttrip.signup.AuthPresenter register = new ng.com.maktay.nexttrip.signup.AuthPresenter(this);
 
             register.register(fullName, email_Holder, phone, "CASH");
             //TODO: I don't see where you collect phone number from user.
-//            Registration reg = new Registration();
+//            AuthPresenter reg = new AuthPresenter();
 //            reg.execute();
-          //  new Registration.execute();
+          //  new AuthPresenter.execute();
         } else {
             Toast.makeText(RegistrationActivity.this, "All Fields Are Required", Toast.LENGTH_LONG).show();
         }
@@ -109,7 +97,6 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
 
     @Override
     public void openOTP() {
-        //TODO: Open OTP Activity
     }
 
     @Override
@@ -125,6 +112,6 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
 
     @Override
     public void openLogin() {
-        startActivity(new Intent(this, AuthenticationActivity.class));
+        startActivity(new Intent(this, PhoneActivity.class));
     }
 }
