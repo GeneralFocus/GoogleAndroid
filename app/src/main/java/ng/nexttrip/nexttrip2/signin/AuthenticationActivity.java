@@ -1,6 +1,7 @@
 package ng.nexttrip.nexttrip2.signin;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import ng.nexttrip.nexttrip2.signup.RegistrationActivity;
  */
 
 public class AuthenticationActivity extends AppCompatActivity implements RegInterface.View {
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,8 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
     @Override
     public void showProgress(boolean show) {
         //TODO: Show Progress
+        progressDialog.setMessage("Validating Phone Number....");
+        progressDialog.show();
     }
 
     @NotNull

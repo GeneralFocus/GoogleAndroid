@@ -52,6 +52,8 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
         reg_lastname = findViewById(R.id.reg_lastname);
         reg_email = findViewById(R.id.reg_email);
        //TODO get the phone number passed from the PhoneActivity To Avoid Input Replication
+        Intent intent = getIntent();
+        phone = intent.getStringExtra("phone_number");
     }
 
     //TODO After registration take user to the login page
