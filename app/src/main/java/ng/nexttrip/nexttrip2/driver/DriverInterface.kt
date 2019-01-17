@@ -1,11 +1,9 @@
-package ng.nexttrip.nexttrip2.location
+package ng.nexttrip.nexttrip2.driver
 
 import android.content.Context
 
-/**
- * Created by generalfocus on 17/01/2019.
- */
-interface LocationInterface {
+interface DriverInterface {
+
     // TODO: Extend this in Activity/Fragment
     interface View {
         fun showError(error: String)
@@ -15,12 +13,11 @@ interface LocationInterface {
         fun getContext(): Context
     }
 
-    /*interface Location{
+    interface Presenter{
         fun login(username: String, password: String)
 
         fun register(name: String, username: String, password: String, email: String,
                      phone_number: String, car_model: String, registration_number: String,
                      car_color: String)
-    }*/
-
+    }
 }

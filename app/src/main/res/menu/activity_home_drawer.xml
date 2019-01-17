@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_trips"
+            android:icon="@drawable/ic_airline_seat_recline_extra_white_24dp"
+            android:title="@string/my_trips" />
+        <item
+            android:id="@+id/nav_payment"
+            android:icon="@drawable/ic_payment_black_24dp"
+            android:title="@string/payment_plan" />
+        <item
+            android:id="@+id/nav_promo"
+            android:icon="@drawable/ic_card_giftcard_black_24dp"
+            android:title="@string/promo" />
+        <item
+            android:id="@+id/nav_driving"
+            android:icon="@drawable/ic_drive_eta_black_24dp"
+            android:title="@string/start_driving" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_help_black_24dp"
+            android:title="@string/help"
+            />
+    </group>
+
+    <item android:title="Advance">
+        <menu>
+            <item
+                android:id="@+id/nav_rentals"
+                android:icon="@drawable/ic_trending_up_black_24dp"
+                android:title="@string/car_rentals" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/action_settings" />
+        </menu>
+    </item>
+
+</menu>

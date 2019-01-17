@@ -1,0 +1,145 @@
+ public void validate_PhoneNumber(View view)
+    {
+        CheckEditTextIsEmptyOrNot();
+        if (CheckEditText) {
+            UserLogin();
+        } else {
+            Toast.makeText(PhoneActivity.this, "Input your phone number", Toast.LENGTH_LONG).show();
+        }
+     /*  Intent intent = new Intent(PhoneActivity.this, RegistrationActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_out, R.anim.slide_in);*/
+    }
+    //Method Empty Text Check
+    public void CheckEditTextIsEmptyOrNot() {
+        // Getting values from EditText.
+        phone_NumberHolder = phone.getText().toString().trim();
+
+        // Checking whether EditText value is empty or not.
+        if (TextUtils.isEmpty(phone_NumberHolder)) {
+            // If EditText is empty then set variable value as False.
+            CheckEditText = false;
+        } else {
+            // If EditText is filled then set variable value as True.
+            CheckEditText = true;
+        }
+    }
+    public void UserLogin() {
+        try {
+            // Showing progress dialog at user registration time.
+            progressDialog.setMessage("Validating Phone Number....");
+            progressDialog.show();
+
+            // Creating string request with post method.
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, HttpUrl,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String ServerResponse) {
+
+                            // Hiding the progress dialog after all task complete.
+                            progressDialog.dismiss();
+
+                            // Matching server response message to our text.
+                            if (ServerResponse.equalsIgnoreCase("Account Found")) {
+
+                                // If response matched then show the toast.
+                                Toast.makeText(PhoneActivity.this, "Phone number found, OTP Sent...", Toast.LENGTH_LONG).show();
+
+                                // Opening the OTP activity using intent.
+                                Intent intent = new Intent(PhoneActivity.this, AuthenticationActivity.class);
+
+
+                                // Sending User Email to another activity using intent.
+                                intent.putExtra("user_phone_number", phone_NumberHolder);
+
+                                startActivity(intent);
+                                //TODO uncomment finish(); and link to OTP input view
+                                finish();
+                            } else {
+
+                                // Showing Echo Response Message Coming From Server.
+                                //  Toast.makeText(PhoneActivity.this, ServerResponse, Toast.LENGTH_LONG).show();
+                                //TODO uncomment ServerResponse when shit get real
+                                Toast.makeText(PhoneActivity.this,"Unknown Error Occur Check Your Internet Settings And Try Again",Toast.LENGTH_LONG).show();
+                                //  Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG.setAction("Action", null).show();
+                                Intent intent = new Intent(PhoneActivity.this, RegistrationActivity.class);
+                                // Sending User Email to another activity using intent.
+                                intent.putExtra("phone_number", phone_NumberHolder);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.slide_out, R.anim.slide_in);
+                                //    finish();
+                            }
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+
+                            // Hiding the progress dialog after all task complete.
+                            progressDialog.dismiss();
+
+                            // Showing error message if something goes wrong.
+                            Toast.makeText(PhoneActivity.this, volleyError.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+
+                    // Creating Map String Params.
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    // Adding All values to Params.
+                    // The firs argument should be same sa your MySQL database table columns.
+                    params.put("phone_number", phone_NumberHolder);
+
+                    return params;
+                }
+
+            };
+
+            // Creating RequestQueue.
+            RequestQueue requestQueue = Volley.newRequestQueue(PhoneActivity.this);
+
+            // Adding the StringRequest object into requestQueue.
+            requestQueue.add(stringRequest);
+        }
+        catch (Exception ex){
+            Toast.makeText(PhoneActivity.this,"Error In UserLogin Method "+ ex.toString(),Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+
+    ///Grade....
+
+
+/* Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.0.0'
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}*/
