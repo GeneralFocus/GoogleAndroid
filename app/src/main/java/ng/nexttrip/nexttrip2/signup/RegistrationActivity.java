@@ -14,8 +14,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,7 +59,7 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
         CheckEditTextIsEmptyOrNot();
         if (CheckEditText) {
 
-            String fullName = firstname_Holder + " " + lastname_Holder
+            String fullName = firstname_Holder + " " + lastname_Holder;
 
             ng.com.maktay.nexttrip.signup.Registration register = new ng.com.maktay.nexttrip.signup.Registration(this);
 
@@ -95,7 +93,7 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
 
     @Override
     public void showError(@NotNull String error) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 
     @Override
