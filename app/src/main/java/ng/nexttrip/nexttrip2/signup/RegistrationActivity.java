@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -15,12 +16,14 @@ import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ng.com.maktay.nexttrip.signup.Registration;
 import ng.nexttrip.nexttrip2.PhoneActivity;
 import ng.nexttrip.nexttrip2.R;
 import ng.nexttrip.nexttrip2.signin.AuthenticationActivity;
@@ -33,7 +36,7 @@ import ng.nexttrip.nexttrip2.util.Util;
  * Created by Olabode Qudus on 11/10/2018.
  */
 
-public class RegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity implements RegInterface.View {
     EditText reg_firstname, reg_lastname, reg_email;
     String  firstname_Holder, lastname_Holder, email_Holder;
     String phone,name,email;
@@ -57,16 +60,21 @@ public class RegistrationActivity extends AppCompatActivity {
     public void proceedButton(View view){
         CheckEditTextIsEmptyOrNot();
         if (CheckEditText) {
-            Registration reg = new Registration();
-            reg.execute();
+
+            String fullName = firstname_Holder + " " + lastname_Holder
+
+            ng.com.maktay.nexttrip.signup.Registration register = new ng.com.maktay.nexttrip.signup.Registration(this);
+
+            register.register(fullName, email_Holder, phone, "CASH");
+            //TODO: I don't see where you collect phone number from user.
+//            Registration reg = new Registration();
+//            reg.execute();
           //  new Registration.execute();
         } else {
             Toast.makeText(RegistrationActivity.this, "All Fields Are Required", Toast.LENGTH_LONG).show();
         }
-       /* Intent intent = new Intent(RegistrationActivity.this,
-                AuthenticationActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in, R.anim.slide_in);*/
+
+        //TODO: try to clean up your code. Remove unnecessary comments please
 
     }
     public void CheckEditTextIsEmptyOrNot() {
@@ -84,110 +92,34 @@ public class RegistrationActivity extends AppCompatActivity {
             CheckEditText = true;
         }
     }
-    class Registration extends AsyncTask<String,String, String> {
 
+    @Override
+    public void showError(@NotNull String error) {
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+    }
 
-        ProgressDialog pDialog;
-        String toastText="Internet Problem";
-        String regiresult="";
-        int success=0;
-        int error=0;
-        String errmsg="Server is down";
+    @Override
+    public void showMessage(@NotNull String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog=new ProgressDialog(con);
-            pDialog.setMessage("Registration is processing......");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
-            pDialog.show();
-        }
+    @Override
+    public void openRegister() {
+    }
 
-        @Override
-        protected String doInBackground(String... arg0) {
-            String res="no res";
-             name= reg_firstname.getText().toString().trim() + " " + reg_lastname.getText().toString().trim();
-            email=reg_email.getText().toString().trim();
-            Intent intent = getIntent();
-            phone = intent.getStringExtra("phone_number");
+    @Override
+    public void openOTP() {
+        //TODO: Open OTP Activity
+    }
 
-            List<NameValuePair> params=new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("name", name));
-            params.add(new BasicNameValuePair("email", email));
-            params.add(new BasicNameValuePair("phone_number", phone));
-            params.add(new BasicNameValuePair("user_type", "client"));
-            params.add(new BasicNameValuePair("category", "client"));
+    @Override
+    public void showProgress(boolean show) {
+        //TODO: Show Progress
+    }
 
-            UserInfo.setEmail(email);
-            UserInfo.setName(name);
-            UserInfo.setPhonenumber(phone);
-
-            try {
-                JSONObject jobj= jparser.makeHttpRequest(regiURL, "POST", params);
-                success=jobj.getInt("success");
-                res=jobj.toString();
-                if(success==1){
-                    toastText="Registration complete";
-                }else if(success==0){
-                    regiresult=jobj.getString("message");
-                    toastText="Problem in registration";
-                }else{
-                    toastText="Link not found";
-                }
-
-            } catch (JSONException e) {
-                toastText="There are some problem";
-                e.printStackTrace();
-            }catch( Exception e){
-                error=1;
-            }
-
-
-            return res;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            //Toast.makeText(MainActivity.this, s+" "+result, Toast.LENGTH_SHORT).show();
-            pDialog.dismiss();
-            Log.e("XXX",result);
-            if(error==1){
-                Toast.makeText(con,errmsg, Toast.LENGTH_SHORT).show();
-                if(Util.isConnectingToInternet(con)){
-                    Toast.makeText(con, "Server is down. Please try again later", Toast.LENGTH_SHORT).show();
-                  /*  registrationResult.setText("Server is down. Please try again later");
-                    registrationResult.setVisibility(View.VISIBLE);*/
-                }else{
-                    Util.showNoInternetDialog(con);
-                }
-                return;
-            }
-
-            if(success==0){
-                Toast.makeText(con, regiresult, Toast.LENGTH_SHORT).show();
-               /* registrationResult.setText(regiresult);
-                registrationResult.setVisibility(View.VISIBLE);*/
-            }else if (success==1){
-
-				/*GetUserData data=new GetUserData();
-				data.execute();
-
-				Intent i=new Intent(con, MainScreenActivity.class);
-				startActivity(i);
-
-				registrationResult.setVisibility(View.GONE);
-				finish();*/
-				//TODO we going back to login page after reg
-                startActivity(new Intent(con, PhoneActivity.class));
-                Toast.makeText(con,toastText, Toast.LENGTH_SHORT).show();
-                finish();
-
-
-
-            }
-        }
-
+    @NotNull
+    @Override
+    public Context getContext() {
+        return this;
     }
 }
