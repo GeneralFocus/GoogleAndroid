@@ -82,15 +82,12 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(userRequest)
-        view.showProgress(show = false)
     }
 
 
     override fun sendOTPRequest(phone_number: String, otp_code: String){
         view.showProgress(show = true)
         // Send OTP to the endpoint
-
-        view.showProgress(true)
 
         val param = HashMap<String, String>()
         param["otp_code"] = otp_code
@@ -120,6 +117,5 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
-        view.showProgress(show = false)
     }
 }
