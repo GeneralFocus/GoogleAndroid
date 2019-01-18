@@ -18,6 +18,7 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
     lateinit var prefManager : PrefManager
 
     override fun login(phone_number: String){
+        view.showProgress(true)
         val url = "$userUrl?phone_number=$phone_number"
 
         val loginRequest = JsonObjectRequest(Request.Method.GET, url, null, Response.Listener {
@@ -36,10 +37,11 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(loginRequest)
+        view.showProgress(false)
     }
 
     override fun register(name: String, email: String, phone_number: String, payment_method: String){
-
+        view.showProgress(show = true)
         val param = HashMap<String, String>()
         param["name"] = name
         param["email"] = email
@@ -68,11 +70,12 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(userRequest)
+        view.showProgress(show = false)
     }
 
 
     override fun sendOTPRequest(phone_number: String, otp_code: String){
-
+        view.showProgress(show = true)
         // Send OTP to the endpoint
 
         val param = HashMap<String, String>()
@@ -99,5 +102,6 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
+        view.showProgress(show = false)
     }
 }
