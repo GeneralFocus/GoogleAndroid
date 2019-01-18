@@ -13,7 +13,7 @@ import com.jkb.vcedittext.VerificationCodeEditText;
 
 import org.jetbrains.annotations.NotNull;
 
-import ng.com.maktay.nexttrip.signup.AuthPresenter;
+import ng.nexttrip.nexttrip2.signup.AuthPresenter;
 import ng.nexttrip.nexttrip2.PhoneActivity;
 import ng.nexttrip.nexttrip2.R;
 import ng.nexttrip.nexttrip2.home.HomeActivity;

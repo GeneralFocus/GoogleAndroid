@@ -1,4 +1,4 @@
-package ng.com.maktay.nexttrip.signup
+package ng.nexttrip.nexttrip2.signup
 
 import android.util.Log
 import com.android.volley.Request
@@ -82,12 +82,12 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(userRequest)
-        view.showProgress(show = false)
+        view.showProgress( false)
     }
 
 
     override fun sendOTPRequest(phone_number: String, otp_code: String){
-        view.showProgress(show = true)
+        view.showProgress( true)
         // Send OTP to the endpoint
 
         view.showProgress(true)
@@ -120,6 +120,6 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
-        view.showProgress(show = false)
+        view.showProgress(false)
     }
 }

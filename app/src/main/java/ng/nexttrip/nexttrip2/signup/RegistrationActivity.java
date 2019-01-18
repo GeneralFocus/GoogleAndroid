@@ -25,7 +25,7 @@ import ng.nexttrip.nexttrip2.util.GlobalVariable;
 public class RegistrationActivity extends AppCompatActivity implements RegInterface.View {
     EditText reg_firstname, reg_lastname, reg_email;
     String  firstname_Holder, lastname_Holder, email_Holder;
-    String phone,name,email;
+   // String phone,name,email;
     SharedPreferences sh;
     Context con;
     Boolean CheckEditText;
@@ -38,8 +38,7 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
         reg_firstname = findViewById(R.id.reg_first_name);
         reg_lastname = findViewById(R.id.reg_lastname);
         reg_email = findViewById(R.id.reg_email);
-        Intent intent = getIntent();
-        phone = intent.getStringExtra("phone_number");
+
     }
 
     @Override
@@ -53,10 +52,14 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
     public void proceedButton(View view){
         CheckEditTextIsEmptyOrNot();
         if (CheckEditText) {
-
             String fullName = firstname_Holder + " " + lastname_Holder;
+            String phone;
+            Intent intent = getIntent();
+            phone = intent.getStringExtra("phone_number");
 
-            ng.com.maktay.nexttrip.signup.AuthPresenter register = new ng.com.maktay.nexttrip.signup.AuthPresenter(this);
+
+
+            ng.nexttrip.nexttrip2.signup.AuthPresenter register = new ng.nexttrip.nexttrip2.signup.AuthPresenter(this);
             register.register(fullName, email_Holder, phone, "CASH");
         } else {
             Toast.makeText(RegistrationActivity.this, "All Fields Are Required", Toast.LENGTH_LONG).show();
