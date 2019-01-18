@@ -13,13 +13,10 @@ import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
-import ng.com.maktay.nexttrip.signup.AuthPresenter;
 import ng.nexttrip.nexttrip2.PhoneActivity;
 import ng.nexttrip.nexttrip2.R;
 import ng.nexttrip.nexttrip2.home.HomeActivity;
-import ng.nexttrip.nexttrip2.signin.AuthenticationActivity;
 import ng.nexttrip.nexttrip2.util.GlobalVariable;
-import ng.nexttrip.nexttrip2.util.JSONParser;
 
 /**
  * Created by Olabode Qudus on 11/10/2018.
@@ -29,7 +26,6 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
     EditText reg_firstname, reg_lastname, reg_email;
     String  firstname_Holder, lastname_Holder, email_Holder;
     String phone,name,email;
-    JSONParser jparser=new JSONParser();
     SharedPreferences sh;
     Context con;
     Boolean CheckEditText;

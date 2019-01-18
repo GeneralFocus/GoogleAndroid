@@ -22,8 +22,13 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
 
         val loginRequest = JsonObjectRequest(Request.Method.GET, url, null, Response.Listener {
             val status = it.getBoolean("status")
-            //TODO: Open OTP Activity
-            view.openOTP()
+            if (status){
+                view.openOTP()
+            }
+            else {
+                view.showError("You have not Registered on NextTrip. Please Register")
+                view.openRegister()
+            }
         }, Response.ErrorListener {
             //TODO: An Unexpected Error Occurred. Try Again
             Log.e("Error", it.toString())
