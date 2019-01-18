@@ -18,9 +18,15 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
     lateinit var prefManager : PrefManager
 
     override fun login(phone_number: String){
+
+        view.showProgress(true)
+
         val url = "$userUrl?phone_number=$phone_number"
 
         val loginRequest = JsonObjectRequest(Request.Method.GET, url, null, Response.Listener {
+
+            view.showProgress(false)
+
             val status = it.getBoolean("status")
             if (status){
                 view.openOTP()
@@ -30,7 +36,9 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
                 view.openRegister()
             }
         }, Response.ErrorListener {
-            //TODO: An Unexpected Error Occurred. Try Again
+
+            view.showProgress(false)
+
             Log.e("Error", it.toString())
             view.showError(it.message!!)
         })
@@ -39,6 +47,8 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
     }
 
     override fun register(name: String, email: String, phone_number: String, payment_method: String){
+
+        view.showProgress(true)
 
         val param = HashMap<String, String>()
         param["name"] = name
@@ -49,6 +59,8 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         val jsonParam = JSONObject(param)
 
         val userRequest = JsonObjectRequest(Request.Method.POST, userUrl, jsonParam, Response.Listener {
+
+            view.showProgress(false)
 
             val status = it.getBoolean("status")
             if (status){
@@ -65,6 +77,7 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
             Log.e("Error", it.toString())
 
             view.showError(errorMessage!!)
+            view.showProgress(false)
         })
 
         Volley.newRequestQueue(view.getContext()).add(userRequest)
@@ -75,6 +88,8 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
 
         // Send OTP to the endpoint
 
+        view.showProgress(true)
+
         val param = HashMap<String, String>()
         param["otp_code"] = otp_code
         param["phone_number"] = phone_number
@@ -82,20 +97,24 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         val jsonParam = JSONObject(param)
 
         val otpRequest = JsonObjectRequest(Request.Method.PUT, userUrl, jsonParam, Response.Listener {
+
+            view.showProgress(false)
+
             val status = it.getBoolean("status")
             if (status){
-                //TODO: Response was successful. Token is correct
-                //TODO: Open Home Activity
+
+                Log.d("Response", it.getString("message"))
 
                 prefManager = PrefManager(view.getContext())
                 prefManager.saveUserID(it.getJSONObject("data").getString("user_id"))
                 view.proceedToHome()
             }
             else{
-                //TODO: Invalid Token. Resend Request
+                view.showError(it.getString("message"))
             }
         }, Response.ErrorListener {
-            //TODO: An unexpected error occurred
+            view.showProgress(false)
+            view.showError(it.message!!)
         })
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
