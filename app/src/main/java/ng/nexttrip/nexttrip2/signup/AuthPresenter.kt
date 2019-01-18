@@ -65,7 +65,7 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
 
             val status = it.getBoolean("status")
             if (status){
-                view.showMessage("Registration Successful")
+                view.showMessage(it.getString("message"))
                 view.openLogin()
             }
             else{
