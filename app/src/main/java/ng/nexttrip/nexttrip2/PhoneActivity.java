@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ng.com.maktay.nexttrip.signup.AuthPresenter;
+import ng.nexttrip.nexttrip2.home.HomeActivity;
 import ng.nexttrip.nexttrip2.signin.AuthenticationActivity;
 import ng.nexttrip.nexttrip2.signup.RegInterface;
 import ng.nexttrip.nexttrip2.signup.RegistrationActivity;
@@ -58,6 +59,12 @@ public class PhoneActivity extends AppCompatActivity implements RegInterface.Vie
         sh=getSharedPreferences("NEXT_TRIP", MODE_PRIVATE);
         phone = findViewById(R.id.authenticate_phone);
         progressDialog = new ProgressDialog(PhoneActivity.this);
+    }
+    @Override
+    public void proceedToHome(){
+        Intent intent = new Intent(PhoneActivity.this, HomeActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_in);
     }
     public void validate_PhoneNumber(View view)
     {

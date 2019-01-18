@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.jkb.vcedittext.VerificationCodeEditText;
+
 import org.jetbrains.annotations.NotNull;
 
 import ng.com.maktay.nexttrip.signup.AuthPresenter;
@@ -25,15 +27,21 @@ import ng.nexttrip.nexttrip2.signup.RegistrationActivity;
 public class AuthenticationActivity extends AppCompatActivity implements RegInterface.View {
     ProgressDialog progressDialog;
     String phoneNumber;
+    VerificationCodeEditText text_verify_code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
-
+        text_verify_code = findViewById(R.id.text_verify_code);
         phoneNumber = getIntent().getStringExtra("phone_number");
 
+    }
+    public void validate_otp_button(View view){
+        //TODO: Calling method to validate OTP
+        String otp_text = text_verify_code.getText().toString();
+        validateOTP(phoneNumber,otp_text);
     }
 
     @Override
@@ -44,7 +52,6 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
     }
 
     void validateOTP(String phoneNumber, String otp){
-        //TODO: Call this on Button Click when you want to validate OTP
         AuthPresenter presenter = new AuthPresenter(this);
         presenter.sendOTPRequest(phoneNumber, otp);
     }
@@ -71,8 +78,11 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
 
     @Override
     public void showProgress(boolean show) {
-        progressDialog.setMessage("Validating Phone Number....");
-        progressDialog.show();
+        ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Authenticating Credentials Please Wait......");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
     }
 
     @NotNull

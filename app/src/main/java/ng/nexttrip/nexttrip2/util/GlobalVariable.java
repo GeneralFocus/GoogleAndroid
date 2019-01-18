@@ -5,5 +5,5 @@ package ng.nexttrip.nexttrip2.util;
  */
 
 public class GlobalVariable {
-    public static String API="ec2-52-15-130-95.us-east-2.compute.amazonaws.com";
+    public static String API="http://ec2-52-15-130-95.us-east-2.compute.amazonaws.com";
 }

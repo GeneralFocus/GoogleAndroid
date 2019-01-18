@@ -98,5 +98,6 @@ tools:context=".signin.AuthenticationActivity">
     android:layout_alignParentEnd="true"
     android:layout_margin="30dp"
     android:id="@+id/button_verify"
+    android:onClick="validate_otp_button"
     />
 </RelativeLayout>

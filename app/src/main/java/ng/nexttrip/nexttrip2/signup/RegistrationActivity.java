@@ -1,5 +1,6 @@
 package ng.nexttrip.nexttrip2.signup;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +13,10 @@ import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
+import ng.com.maktay.nexttrip.signup.AuthPresenter;
 import ng.nexttrip.nexttrip2.PhoneActivity;
 import ng.nexttrip.nexttrip2.R;
+import ng.nexttrip.nexttrip2.home.HomeActivity;
 import ng.nexttrip.nexttrip2.signin.AuthenticationActivity;
 import ng.nexttrip.nexttrip2.util.GlobalVariable;
 import ng.nexttrip.nexttrip2.util.JSONParser;
@@ -39,9 +42,15 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
         reg_firstname = findViewById(R.id.reg_first_name);
         reg_lastname = findViewById(R.id.reg_lastname);
         reg_email = findViewById(R.id.reg_email);
-       //TODO get the phone number passed from the PhoneActivity To Avoid Input Replication
         Intent intent = getIntent();
         phone = intent.getStringExtra("phone_number");
+    }
+
+    @Override
+    public void proceedToHome(){
+        Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_in);
     }
 
     //TODO After registration take user to the login page
@@ -52,19 +61,13 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
             String fullName = firstname_Holder + " " + lastname_Holder;
 
             ng.com.maktay.nexttrip.signup.AuthPresenter register = new ng.com.maktay.nexttrip.signup.AuthPresenter(this);
-
             register.register(fullName, email_Holder, phone, "CASH");
-            //TODO: I don't see where you collect phone number from user.
-//            AuthPresenter reg = new AuthPresenter();
-//            reg.execute();
-          //  new AuthPresenter.execute();
         } else {
             Toast.makeText(RegistrationActivity.this, "All Fields Are Required", Toast.LENGTH_LONG).show();
         }
 
-        //TODO: try to clean up your code. Remove unnecessary comments please
-
     }
+
     public void CheckEditTextIsEmptyOrNot() {
         // Getting values from EditText.
         firstname_Holder = reg_firstname.getText().toString().trim();
@@ -73,10 +76,8 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
 
         // Checking whether EditText value is empty or not.
         if (TextUtils.isEmpty(firstname_Holder) || TextUtils.isEmpty(lastname_Holder) || TextUtils.isEmpty(email_Holder)) {
-            // If EditText is empty then set variable value as False.
             CheckEditText = false;
         } else {
-            // If EditText is filled then set variable value as True.
             CheckEditText = true;
         }
     }
@@ -85,6 +86,7 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
     public void showError(@NotNull String error) {
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
+
 
     @Override
     public void showMessage(@NotNull String message) {
@@ -101,7 +103,11 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
 
     @Override
     public void showProgress(boolean show) {
-        //TODO: Show Progress
+        ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Sending Details To Our Server Please Wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
     }
 
     @NotNull
@@ -114,4 +120,5 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
     public void openLogin() {
         startActivity(new Intent(this, PhoneActivity.class));
     }
+
 }
