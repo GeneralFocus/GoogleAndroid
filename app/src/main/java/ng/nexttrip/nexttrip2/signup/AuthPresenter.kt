@@ -1,4 +1,4 @@
-package ng.com.maktay.nexttrip.signup
+package ng.nexttrip.nexttrip2.signup
 
 import android.util.Log
 import com.android.volley.Request
@@ -86,7 +86,7 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
 
 
     override fun sendOTPRequest(phone_number: String, otp_code: String){
-        view.showProgress(show = true)
+        view.showProgress( true)
         // Send OTP to the endpoint
 
         val param = HashMap<String, String>()

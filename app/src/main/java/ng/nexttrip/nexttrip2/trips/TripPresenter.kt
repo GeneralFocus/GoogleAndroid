@@ -11,6 +11,9 @@ import ng.nexttrip.nexttrip2.util.GlobalVariable
 import org.json.JSONObject
 
 class TripPresenter(var view: TripInterface.View): TripInterface.Presenter {
+    override fun startJourney(trip_request_id: String, trip_rate: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     val tripUrl = "${GlobalVariable.API}/api/v1/taxi"
 
@@ -43,6 +46,10 @@ class TripPresenter(var view: TripInterface.View): TripInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(bookRequest)
+    }
+
+    override fun endJourney(trip_request_id: String, payment_amount: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun setTripStatus(request_id: String, ride_status: String) {
