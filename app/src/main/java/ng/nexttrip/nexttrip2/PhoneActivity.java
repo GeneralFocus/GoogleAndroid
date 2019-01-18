@@ -60,8 +60,10 @@ public class PhoneActivity extends AppCompatActivity implements RegInterface.Vie
     {
         CheckEditTextIsEmptyOrNot();
         if (CheckEditText) {
+          //showProgress(true);
             AuthPresenter presenter = new AuthPresenter(this);
             presenter.login(phone_NumberHolder);
+            //showProgress(false);
         } else {
             Toast.makeText(PhoneActivity.this, "Input your phone number", Toast.LENGTH_LONG).show();
         }

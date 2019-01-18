@@ -2,7 +2,7 @@
     <string name="app_name">NextTrip</string>
     <string name="title_activity_maps">Map</string>
     <string name="country_code">+234</string>
-    <string name="phone_number_hint">080 3345 6789</string>
+    <string name="phone_number_hint">+234 XXX XXX XXX</string>
     <string name="input_phone_number_hint">Input phone number</string>
     <string name="enter_phone_number">Please enter your phone number</string>
     <string name="first_name_hint">First Name</string>

@@ -44,6 +44,7 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(loginRequest)
+        view.showProgress(false)
     }
 
     override fun register(name: String, email: String, phone_number: String, payment_method: String){
@@ -81,11 +82,12 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(userRequest)
+        view.showProgress(show = false)
     }
 
 
     override fun sendOTPRequest(phone_number: String, otp_code: String){
-
+        view.showProgress(show = true)
         // Send OTP to the endpoint
 
         view.showProgress(true)
@@ -118,5 +120,6 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
+        view.showProgress(show = false)
     }
 }
