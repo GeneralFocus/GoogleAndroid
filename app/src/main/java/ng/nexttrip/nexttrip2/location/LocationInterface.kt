@@ -1,6 +1,7 @@
 package ng.nexttrip.nexttrip2.location
 
 import android.content.Context
+import ng.nexttrip.nexttrip2.pojo.Location
 
 /**
  * Created by generalfocus on 17/01/2019.
@@ -13,6 +14,8 @@ interface LocationInterface {
         fun showMessage(message: String)
 
         fun getContext(): Context
+
+        fun listDrivers(drivers: ArrayList<Location>)
     }
 
     /*interface Location{

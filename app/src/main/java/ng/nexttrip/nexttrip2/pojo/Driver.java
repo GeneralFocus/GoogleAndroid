@@ -1,6 +1,8 @@
 package ng.nexttrip.nexttrip2.pojo;
 
-public class Driver {
+import java.io.Serializable;
+
+public class Driver implements Serializable {
 
     int id;
     String name;
@@ -14,6 +16,34 @@ public class Driver {
     String registration_model;
     String car_color;
     String driver_status;
+
+    public Driver( int id,
+            String name,
+            String username,
+            String password,
+            String email,
+            String phone_number,
+            String user_type,
+            String archived,
+            String car_model,
+            String registration_model,
+            String car_color,
+            String driver_status){
+
+        this.name = name;
+        this.user_type = user_type;
+        this.archived = archived;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.car_color = car_color;
+        this.car_model = car_model;
+        this.registration_model = registration_model;
+        this.driver_status = driver_status;
+        this.id = id;
+    }
+
 
     public int getId() {
         return id;

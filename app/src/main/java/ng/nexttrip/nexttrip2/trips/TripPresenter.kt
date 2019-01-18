@@ -91,4 +91,6 @@ class TripPresenter(var view: TripInterface.View): TripInterface.Presenter {
 
         return p1
     }
+
+
 }

@@ -1,24 +1,28 @@
 package ng.nexttrip.nexttrip2.pojo;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
 
     int id;
     String driver_id;
     String lat;
     String lng;
     String online;
+    Driver driver;
 
     public Location(int id,
             String driver_id,
             String lat,
             String lng,
-            String online) {
+            String online, Driver driver) {
 
         this.id = id;
         this.driver_id = driver_id;
         this.lat = lat;
         this.lng = lng;
         this.online = online;
+        this.driver = driver;
     }
 
     public int getId() {
@@ -59,5 +63,13 @@ public class Location {
 
     public void setOnline(String online) {
         this.online = online;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 }
