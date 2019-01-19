@@ -103,7 +103,7 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
     @Override
     public void showProgress(boolean show) {
         ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Sending Details To Our Server Please Wait...");
+        pDialog.setMessage("Please Wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();

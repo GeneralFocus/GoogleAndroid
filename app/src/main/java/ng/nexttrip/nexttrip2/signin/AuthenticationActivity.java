@@ -68,7 +68,7 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
 
     @Override
     public void openRegister() {
-        startActivity(new Intent(this, RegistrationActivity.class));
+       // startActivity(new Intent(this, RegistrationActivity.class));
     }
 
     @Override

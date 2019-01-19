@@ -47,7 +47,7 @@ tools:context=".signin.AuthenticationActivity">
         app:bottomLineHeight="2dp"
         app:bottomLineNormalColor="@color/colorPrimary"
         app:bottomLineSelectedColor="@color/colorPrimary"
-        app:figures="4"
+        app:figures="5"
         app:verCodeMargin="10dp"
         />
 

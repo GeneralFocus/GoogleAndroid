@@ -49,7 +49,7 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
 
     override fun register(name: String, email: String, phone_number: String, payment_method: String){
 
-        view.showProgress(true)
+       view.showProgress(true)
 
         val param = HashMap<String, String>()
         param["name"] = name
@@ -82,6 +82,7 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(userRequest)
+        view.showProgress(false)
     }
 
 
@@ -117,5 +118,6 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         })
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
+        view.showProgress(false)
     }
 }
