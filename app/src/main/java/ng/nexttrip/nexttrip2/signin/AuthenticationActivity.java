@@ -25,7 +25,7 @@ import ng.nexttrip.nexttrip2.signup.RegistrationActivity;
  */
 
 public class AuthenticationActivity extends AppCompatActivity implements RegInterface.View {
-    ProgressDialog progressDialog;
+  //  ProgressDialog progressDialog;
     String phoneNumber;
     VerificationCodeEditText text_verify_code;
 

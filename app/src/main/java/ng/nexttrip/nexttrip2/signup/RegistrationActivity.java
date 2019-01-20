@@ -56,9 +56,6 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
             String phone;
             Intent intent = getIntent();
             phone = intent.getStringExtra("phone_number");
-
-
-
             ng.nexttrip.nexttrip2.signup.AuthPresenter register = new ng.nexttrip.nexttrip2.signup.AuthPresenter(this);
             register.register(fullName, email_Holder, phone, "CASH");
         } else {

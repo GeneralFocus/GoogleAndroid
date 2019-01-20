@@ -99,26 +99,22 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
         val otpRequest = JsonObjectRequest(Request.Method.PUT, userUrl, jsonParam, Response.Listener {
 
             view.showProgress(false)
-
             val status = it.getBoolean("status")
-           Log.d("Response", it.toString())
-           // it.getJSONObject(“data”)
-            //Log.e(it.getJSONObject(“data”))
-         /*   if (status){
-
+           if (status){
                 Log.d("Response", it.getString("message"))
-
                 prefManager = PrefManager(view.getContext())
                 prefManager.saveUserID(it.getJSONObject("data").getString("user_id"))
                 view.proceedToHome()
             }
             else{
-                view.showError(it.getString("message"))
-            }*/
+               val message = it.getString("message")
+               view.showError(message)
+            }
         }, Response.ErrorListener {
+            val errorMessage = it.message
+            Log.e("Error", it.toString())
+            view.showError(errorMessage!!)
             view.showProgress(false)
-            Log.d("Response", it.toString())//"message"))
-//           view.showError(it.message!!)
         })
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
