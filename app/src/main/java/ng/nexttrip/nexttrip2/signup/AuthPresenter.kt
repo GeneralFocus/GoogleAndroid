@@ -101,7 +101,7 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
             view.showProgress(false)
 
             val status = it.getBoolean("status")
-           Log.d("Response", it.getString("message"))
+           Log.d("Response", it.toString())
            // it.getJSONObject(“data”)
             //Log.e(it.getJSONObject(“data”))
          /*   if (status){
