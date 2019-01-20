@@ -101,6 +101,9 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
             view.showProgress(false)
 
             val status = it.getBoolean("status")
+          //  Log.d("Response", it.getString("message"))
+           // it.getJSONObject(“data”)
+            //Log.e(it.getJSONObject(“data”))
             if (status){
 
                 Log.d("Response", it.getString("message"))
@@ -114,7 +117,8 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
             }
         }, Response.ErrorListener {
             view.showProgress(false)
-            view.showError(it.message!!)
+           // Log.d("Response", it.toString())//"message"))
+           view.showError(it.message!!)
         })
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
