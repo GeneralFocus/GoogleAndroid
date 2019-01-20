@@ -101,10 +101,10 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
             view.showProgress(false)
 
             val status = it.getBoolean("status")
-          //  Log.d("Response", it.getString("message"))
+           Log.d("Response", it.getString("message"))
            // it.getJSONObject(“data”)
             //Log.e(it.getJSONObject(“data”))
-            if (status){
+         /*   if (status){
 
                 Log.d("Response", it.getString("message"))
 
@@ -114,7 +114,7 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
             }
             else{
                 view.showError(it.getString("message"))
-            }
+            }*/
         }, Response.ErrorListener {
             view.showProgress(false)
            // Log.d("Response", it.toString())//"message"))
