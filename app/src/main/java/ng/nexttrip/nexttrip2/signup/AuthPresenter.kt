@@ -117,8 +117,8 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
             }*/
         }, Response.ErrorListener {
             view.showProgress(false)
-           // Log.d("Response", it.toString())//"message"))
-           view.showError(it.message!!)
+            Log.d("Response", it.toString())//"message"))
+//           view.showError(it.message!!)
         })
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
