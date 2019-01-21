@@ -66,7 +66,8 @@
         <activity android:name=".promo.PromoActivity" />
         <activity android:name=".home.HomeActivity$MapsMarkerActivity" />
         <activity android:name=".map.GoogleMapPage" />
-        <activity android:name=".role.RoleActivity"></activity>
+        <activity android:name=".role.RoleActivity" />
+        <activity android:name=".signup.DriverRegistrationActivity"></activity>
     </application>
 
 </manifest>

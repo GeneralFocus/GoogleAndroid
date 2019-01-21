@@ -57,4 +57,5 @@
         <item>Driver</item>
         <item>Rider</item>
     </string-array>
+    <string name="car_model">Car Model</string>
 </resources>
