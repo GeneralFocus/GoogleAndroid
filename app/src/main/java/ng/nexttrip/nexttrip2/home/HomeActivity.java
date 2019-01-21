@@ -23,12 +23,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import ng.nexttrip.nexttrip2.R;
+import ng.nexttrip.nexttrip2.location.LocationInterface;
 import ng.nexttrip.nexttrip2.promo.PromoActivity;
 import ng.nexttrip.nexttrip2.rental.MyRentalActivity;
 import ng.nexttrip.nexttrip2.trips.TripsActivity;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener  {
+        implements NavigationView.OnNavigationItemSelectedListener, LocationInterface {
    // SupportMapFragment mMap;
 
     @Override
@@ -39,13 +40,13 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Updating Your Current Location", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

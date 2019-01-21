@@ -36,7 +36,6 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,9 +63,10 @@
         <activity android:name=".rental.RentalHistoryActivity" />
         <activity android:name=".rental.RentalReservationActivity" />
         <activity android:name=".trips.TripsActivity" />
-        <activity android:name=".promo.PromoActivity"/>
-        <activity android:name=".home.HomeActivity$MapsMarkerActivity"/>
-        <activity android:name=".map.GoogleMapPage"/>
+        <activity android:name=".promo.PromoActivity" />
+        <activity android:name=".home.HomeActivity$MapsMarkerActivity" />
+        <activity android:name=".map.GoogleMapPage" />
+        <activity android:name=".role.RoleActivity"></activity>
     </application>
 
 </manifest>

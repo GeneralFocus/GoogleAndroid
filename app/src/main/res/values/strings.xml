@@ -52,4 +52,9 @@
     <string name="lastname">Last Name</string>
     <string name="firstname">First Name</string>
     <string name="email">Email Address</string>
+    <string name="choose_role">Register As:</string>
+    <string-array name="role_array">
+        <item>Driver</item>
+        <item>Rider</item>
+    </string-array>
 </resources>

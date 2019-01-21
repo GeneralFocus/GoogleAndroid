@@ -100,8 +100,8 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
 
             view.showProgress(false)
             val status = it.getBoolean("status")
-           if (status){
-                Log.d("Response", it.getString("message"))
+            if (status){
+               // Log.d("Response", it.getString("message")) . --> this is where your error is
                 prefManager = PrefManager(view.getContext())
                 prefManager.saveUserID(it.getJSONObject("data").getString("user_id"))
                 view.proceedToHome()
