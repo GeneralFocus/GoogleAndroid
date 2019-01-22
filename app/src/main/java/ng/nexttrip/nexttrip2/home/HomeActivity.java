@@ -1,10 +1,16 @@
 package ng.nexttrip.nexttrip2.home;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,12 +32,17 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import ng.nexttrip.nexttrip2.R;
 import ng.nexttrip.nexttrip2.location.LocationInterface;
 import ng.nexttrip.nexttrip2.promo.PromoActivity;
+import ng.nexttrip.nexttrip2.location.GpsTracker;
 import ng.nexttrip.nexttrip2.rental.MyRentalActivity;
 import ng.nexttrip.nexttrip2.trips.TripsActivity;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, LocationInterface {
+
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback
+       {
+           private GpsTracker gpsTracker;
+           private TextView tvLatitude,tvLongitude;
    // SupportMapFragment mMap;
+           //   implements NavigationView.OnNavigationItemSelectedListener, LocationInterface,OnMapReadyCallback
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +60,14 @@ public class HomeActivity extends AppCompatActivity
             }
         });*/
 
+        try {
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -56,12 +76,27 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        setUpMapIfNeeded(); // TODO Comment this if need be
-      //  SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        //mapFragment.getMapAsync(this);//getMap();
+
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
-    @Override
+
+           public void getLocation(View view){
+               gpsTracker = new GpsTracker(HomeActivity.this);
+               if(gpsTracker.canGetLocation()){
+                   double latitude = gpsTracker.getLatitude();
+                   double longitude = gpsTracker.getLongitude();
+                   tvLatitude.setText(String.valueOf(latitude));
+                   tvLongitude.setText(String.valueOf(longitude));
+               }else{
+                   gpsTracker.showSettingsAlert();
+               }
+           }
+
+           @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -70,6 +105,27 @@ public class HomeActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
+
+    @Override
+        public void onMapReady(GoogleMap googleMap) {
+        gpsTracker = new GpsTracker(HomeActivity.this);
+        if(gpsTracker.canGetLocation()){
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+           // tvLatitude.setText(String.valueOf(latitude));
+            //tvLongitude.setText(String.valueOf(longitude));
+            LatLng sydney = new LatLng(latitude, longitude);
+            googleMap.addMarker(new MarkerOptions().position(sydney)
+                    .title("This Where You Are"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        }else{
+            gpsTracker.showSettingsAlert();
+        }
+               // Add a marker in Sydney, Australia,
+               // and move the map's camera to the same location.
+
+           }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -131,30 +187,7 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private void setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
-      /*  if (mMap == null) {
-            // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            mMap.setMyLocationEnabled(true);
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
 
-
-                mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-
-                    @Override
-                    public void onMyLocationChange(Location arg0) {
-                        // TODO Auto-generated method stub
-
-                        mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
-                    }
-                });
-
-            }
-        }*/
-    }
     public class MapsMarkerActivity extends AppCompatActivity
             implements OnMapReadyCallback {
         // Include the OnCreate() method here too, as described above.
