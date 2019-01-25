@@ -30,6 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import ng.nexttrip.nexttrip2.R;
+import ng.nexttrip.nexttrip2.booking.BookRdeActivity;
 import ng.nexttrip.nexttrip2.location.LocationInterface;
 import ng.nexttrip.nexttrip2.promo.PromoActivity;
 import ng.nexttrip.nexttrip2.location.GpsTracker;
@@ -81,6 +82,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+      //  mapFragment.moveCamera(CameraUpdateFactory.newLatLngZoom(myPlace, 12.0f));
+
     }
 
 
@@ -160,12 +163,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in, R.anim.slide_in);
             // Handle the camera action
-        } else if (id == R.id.nav_driving) {
-           /* Intent intent = new Intent(HomeActivity.this, GoogleMapPage.class);
+        } /*else if (id == R.id.nav_driving) {
+            Intent intent = new Intent(HomeActivity.this, BookRdeActivity.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_in, R.anim.slide_in);*/
+            overridePendingTransition(R.anim.slide_in, R.anim.slide_in);
 
-        } else if (id == R.id.nav_promo) {
+        } */else if (id == R.id.nav_promo) {
             Intent intent = new Intent(HomeActivity.this, PromoActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in, R.anim.slide_in);

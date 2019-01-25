@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainfrag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingBottom="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+           <com.nas.cruzer.helper.TextViewPlaner
+                android:padding="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="location"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="16dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <AutoCompleteTextView
+                android:id="@+id/mypickloc"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:background="#fff"
+                android:hint="Pickup Location"
+                android:gravity="center|left"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <requestFocus />
+            </AutoCompleteTextView>
+        </LinearLayout>
+        <LinearLayout
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.nas.cruzer.helper.TextViewPlaner
+                android:padding="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="location"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="16dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <AutoCompleteTextView
+                android:id="@+id/driverDropLoc"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:background="#fff"
+                android:hint="Drop Location"
+                android:gravity="center|left"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <requestFocus />
+            </AutoCompleteTextView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#fff"
+        android:layout_marginBottom="5dp"
+        android:text="TALK" />
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ratebox"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.nas.cruzer.helper.TextViewPlaner
+                android:text="Fareesr"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <com.nas.cruzer.helper.TextViewPlaner
+                android:id="@+id/rate"
+                android:background="#000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="26sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.nas.cruzer.helper.TextViewPlaner
+                android:id="@+id/speechBtn"
+                android:text="Confirm"
+                android:padding="10dp"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                android:textColor="#fff"
+                android:textSize="16dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

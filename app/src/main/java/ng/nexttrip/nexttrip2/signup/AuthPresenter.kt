@@ -33,7 +33,9 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
             }
             else {
                 view.showError("You have not Registered on NextTrip. Please Register")
-                view.openRegister()
+                //Todo uncomment openRegister in case of error...
+                view.validateRole()
+               // view.openRegister()
             }
         }, Response.ErrorListener {
 
@@ -119,5 +121,9 @@ class AuthPresenter(var view: RegInterface.View): RegInterface.Presenter {
 
         Volley.newRequestQueue(view.getContext()).add(otpRequest)
         view.showProgress(false)
+    }
+
+    override fun validateRole(phone_number: String) {
+
     }
 }

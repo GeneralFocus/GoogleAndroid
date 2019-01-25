@@ -16,27 +16,29 @@
             android:id="@+id/nav_promo"
             android:icon="@drawable/ic_card_giftcard_black_24dp"
             android:title="@string/promo" />
-        <item
+     <!--   <item
             android:id="@+id/nav_driving"
             android:icon="@drawable/ic_drive_eta_black_24dp"
-            android:title="@string/start_driving" />
+            android:title="@string/start_driving" />-->
+
         <item
-            android:id="@+id/nav_help"
-            android:icon="@drawable/ic_help_black_24dp"
-            android:title="@string/help"
-            />
+            android:id="@+id/nav_rentals"
+            android:icon="@drawable/ic_trending_up_black_24dp"
+            android:title="@string/car_rentals" />
     </group>
 
     <item android:title="Advance">
         <menu>
-            <item
-                android:id="@+id/nav_rentals"
-                android:icon="@drawable/ic_trending_up_black_24dp"
-                android:title="@string/car_rentals" />
+
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings_black_24dp"
                 android:title="@string/action_settings" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="@string/help"
+                />
         </menu>
     </item>
 

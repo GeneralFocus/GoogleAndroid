@@ -21,6 +21,8 @@ interface RegInterface {
         fun getContext(): Context
 
         fun proceedToHome()
+
+        fun validateRole()
     }
 
     interface Presenter{
@@ -29,5 +31,7 @@ interface RegInterface {
         fun register(name: String, email: String, phone_number: String, payment_method: String)
 
         fun sendOTPRequest(phone_number: String, otp_code: String)
+
+        fun validateRole(phone_number: String)
     }
 }

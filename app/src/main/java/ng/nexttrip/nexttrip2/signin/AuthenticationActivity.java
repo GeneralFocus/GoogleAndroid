@@ -49,6 +49,10 @@ public class AuthenticationActivity extends AppCompatActivity implements RegInte
         countdown();
 
     }
+    @Override
+    public void validateRole(){
+
+    }
     public void validate_otp_button(View view){
         String otp_text = text_verify_code.getText().toString();
         validateOTP(phoneNumber,otp_text);

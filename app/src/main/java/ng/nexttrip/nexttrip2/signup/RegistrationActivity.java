@@ -48,7 +48,7 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
         overridePendingTransition(R.anim.slide_in, R.anim.slide_in);
     }
 
-    //TODO After registration take user to the login page
+
     public void proceedButton(View view){
         CheckEditTextIsEmptyOrNot();
         if (CheckEditText) {
@@ -58,6 +58,7 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
             phone = intent.getStringExtra("phone_number");
             ng.nexttrip.nexttrip2.signup.AuthPresenter register = new ng.nexttrip.nexttrip2.signup.AuthPresenter(this);
             register.register(fullName, email_Holder, phone, "CASH");
+            //TODO After pass role along
         } else {
             Toast.makeText(RegistrationActivity.this, "All Fields Are Required", Toast.LENGTH_LONG).show();
         }
@@ -97,6 +98,10 @@ public class RegistrationActivity extends AppCompatActivity implements RegInterf
     public void openOTP() {
     }
 
+    @Override
+    public void validateRole(){
+
+    }
     @Override
     public void showProgress(boolean show) {
         ProgressDialog pDialog = new ProgressDialog(this);

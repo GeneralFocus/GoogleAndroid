@@ -58,4 +58,8 @@
         <item>Rider</item>
     </string-array>
     <string name="car_model">Car Model</string>
+    <string name="icon_location">&#xf124;</string>
+    <string name="pick">Pickup Location </string>
+    <string name="icon_drop">&#xf041;</string>
+    <string name="drop">Drop Location</string>
 </resources>
