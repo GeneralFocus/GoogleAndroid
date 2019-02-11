@@ -37,11 +37,14 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".MainActivity">
-           <intent-filter>
+
+
+          <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
+
         </activity>
         <activity android:name=".signin.AuthenticationActivity" />
         <activity android:name=".WelcomeActivity" />
@@ -51,13 +54,11 @@
             android:name=".home.HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-
-         <!--   <intent-filter>
+           <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-
+            </intent-filter>
         </activity>
         <activity android:name=".rental.MyRentalActivity">
 
@@ -72,11 +73,12 @@
         <activity android:name=".rental.RentalReservationActivity" />
         <activity android:name=".trips.TripsActivity" />
         <activity android:name=".promo.PromoActivity" />
-        <activity android:name=".home.HomeActivity$MapsMarkerActivity" />
         <!-- <activity android:name=".map.GoogleMapPage" /> -->
         <activity android:name=".role.RoleActivity" />
         <activity android:name=".signup.DriverRegistrationActivity" />
-        <activity android:name=".booking.BookRdeActivity"></activity>
+        <activity android:name=".booking.BookRdeActivity" />
+        <activity android:name=".home.NewHomeActivity">
+        </activity>
     </application>
 
 </manifest>

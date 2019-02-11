@@ -35,6 +35,16 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
     //Code Edit Text
     implementation 'com.justkiddingbaby:vercodeedittext:1.0.5'
+    // location play services
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
+
+    // dexter runtime permissions
+    implementation 'com.karumi:dexter:4.2.0'
+
+    // ButterKnife view binding
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
 
 }
 android {
