@@ -43,6 +43,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import ng.nexttrip.nexttrip2.R;
+import ng.nexttrip.nexttrip2.payment.PaymentActivity;
 import ng.nexttrip.nexttrip2.promo.PromoActivity;
 import ng.nexttrip.nexttrip2.location.GpsTracker;
 import ng.nexttrip.nexttrip2.rental.MyRentalActivity;
@@ -383,9 +384,9 @@ Toast.makeText(getApplicationContext(),"lat: "+latitude + "long: "+longitude,Toa
 
              MarkerOptions markerOptions = new MarkerOptions();
              markerOptions.position(placeLoc)
-                     .title("ggg")
-                     .snippet("ggsg")
-                     .icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE));
+                     .title("Your Current Location")
+                     .snippet("Book Your Next Trip")
+                     .icon(BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_GREEN));
 
              Marker m = mMap.addMarker(markerOptions);
              mMap.moveCamera(CameraUpdateFactory.newLatLng(placeLoc));
@@ -443,6 +444,9 @@ Toast.makeText(getApplicationContext(),"lat: "+latitude + "long: "+longitude,Toa
             overridePendingTransition(R.anim.slide_in, R.anim.slide_in);
 
         } else if (id == R.id.nav_payment) {
+            Intent intent = new Intent(HomeActivity.this, PaymentActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in, R.anim.slide_in);
 
         } else if (id == R.id.nav_help) {
 
